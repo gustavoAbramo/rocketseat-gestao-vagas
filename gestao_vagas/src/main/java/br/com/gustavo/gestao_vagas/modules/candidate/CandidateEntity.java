@@ -1,6 +1,7 @@
 package br.com.gustavo.gestao_vagas.modules.candidate;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -16,7 +17,8 @@ public class CandidateEntity {
     @Email(message = "O campo (email) deve conter um endereço de email válido.")
     private String email;
 
-    @Pattern(regexp = "^(?!\\s*$)[a-zA-Z0-9]+$", message = "O campo (username) deve conter apenas letras e números, sem espaços em branco.")
+    @NotBlank(message = "O campo (username) não pode estar em branco.")
+    @Pattern(regexp = "^\\S+", message = "O campo (username) deve conter apenas letras e números, sem espaços em branco.")
     private String username;
 
     @Length(min = 5, max = 100)
